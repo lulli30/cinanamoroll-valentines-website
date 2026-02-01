@@ -3,7 +3,20 @@
 import { useState, useEffect } from 'react';
 
 const GIF_LOOP_INTERVAL_MS = 2500;
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 7;
+
+// Paste your song's YouTube video ID (e.g. from youtube.com/watch?v=VIDEO_ID) or leave empty to hide embed
+const SONG_YOUTUBE_ID = 'Ip6cw8gfHHI';
+
+// Add your photo paths (put images in public/album/ and list them here, e.g. '/album/photo1.jpg')
+const PHOTO_ALBUM_IMAGES: string[] = [
+  '/album/photo1.jpg',
+  '/album/photo2.jpg',
+  '/album/photo3.jpg',
+  '/album/photo4.jpg',
+  '/album/photo5.jpg',
+  '/album/photo6.jpg',
+];
 
 const REASONS = [
   'Your smile makes my day brighter.',
@@ -63,7 +76,9 @@ export function SuccessScreen({ onStartOver }: SuccessScreenProps) {
   };
 
   return (
-    <div className="animate-fade-in text-center max-w-xl mx-auto">
+    <div
+      className={`animate-fade-in text-center mx-auto w-full ${step === 3 || step === 4 ? 'max-w-6xl' : 'max-w-xl'}`}
+    >
       {/* Progress dots */}
       <div className="flex justify-center gap-2 mb-6">
         {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
@@ -165,8 +180,68 @@ export function SuccessScreen({ onStartOver }: SuccessScreenProps) {
         </div>
       )}
 
-      {/* Step 3: Countdown */}
+      {/* Step 3: This song reminds me of you */}
       {step === 3 && (
+        <div className="space-y-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-700">
+            This song reminds me of you
+          </h2>
+          <p className="text-lg font-semibold text-slate-700">
+            d4vd – Here With Me
+          </p>
+          {SONG_YOUTUBE_ID ? (
+            <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-xl border-2 border-blue-200/80">
+              <iframe
+                title="Song that reminds me of you"
+                src={`https://www.youtube.com/embed/${SONG_YOUTUBE_ID}?autoplay=0`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          ) : (
+            <p className="text-slate-500 text-sm italic">
+              Add your song: set SONG_YOUTUBE_ID in SuccessScreen.tsx (e.g. from youtube.com/watch?v=...)
+            </p>
+          )}
+        </div>
+      )}
+
+      {/* Step 4: Our photo album */}
+      {step === 4 && (
+        <div className="space-y-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-700">
+            Our photo album
+          </h2>
+          <p className="text-slate-600">
+            Some of our favourite moments together.
+          </p>
+          {PHOTO_ALBUM_IMAGES.length > 0 ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
+              {PHOTO_ALBUM_IMAGES.map((src, i) => (
+                <div
+                  key={i}
+                  className="aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-blue-200/80 bg-slate-100"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={src}
+                    alt={`Our memory ${i + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-slate-500 text-sm italic py-8">
+              Add your photos: put images in the <code className="bg-slate-100 px-1 rounded">public/album/</code> folder, then add their paths to <code className="bg-slate-100 px-1 rounded">PHOTO_ALBUM_IMAGES</code> in SuccessScreen.tsx (e.g. &apos;/album/photo1.jpg&apos;).
+            </p>
+          )}
+        </div>
+      )}
+
+      {/* Step 5: Countdown */}
+      {step === 5 && (
         <div className="space-y-6">
           <div className="flex justify-center">
             <img
@@ -190,8 +265,8 @@ export function SuccessScreen({ onStartOver }: SuccessScreenProps) {
         </div>
       )}
 
-      {/* Step 4: The end + Start Over */}
-      {step === 4 && (
+      {/* Step 6: The end + Start Over */}
+      {step === 6 && (
         <div className="space-y-6">
           <h2 className="text-2xl md:text-3xl font-bold text-slate-700">
             You’ve reached the end

@@ -24,7 +24,9 @@ export default function ValentinesPage() {
 
       <FloatingTulips tulips={state.tulips} />
 
-      <div className="relative z-10 max-w-2xl mx-auto text-center">
+      <div
+        className={`relative z-10 mx-auto text-center w-full ${yesClicked ? 'max-w-6xl' : 'max-w-2xl'}`}
+      >
         {!yesClicked ? (
           <ValentineQuestion
             noButtonPosition={noButtonPosition}
