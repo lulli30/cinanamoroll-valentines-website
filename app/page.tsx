@@ -18,25 +18,31 @@ export default function ValentinesPage() {
   } = state;
 
   return (
-    <main className="min-h-screen w-full overflow-hidden bg-linear-to-br from-blue-50 via-blue-100 to-white flex items-center justify-center p-4">
+    <main className="min-h-screen w-full overflow-hidden bg-linear-to-br from-blue-50 via-blue-100 to-white flex flex-col">
       <AnimatedBackground />
 
       <FloatingTulips tulips={state.tulips} />
 
-      <div
-        className={`relative z-10 mx-auto text-center w-full ${yesClicked ? 'max-w-6xl' : 'max-w-2xl'}`}
-      >
-        {!yesClicked ? (
-          <ValentineQuestion
-            noButtonPosition={noButtonPosition}
-            hideNo={hideNo}
-            onYesClick={handleYesClick}
-            onNoHover={handleNoHover}
-          />
-        ) : (
-          <SuccessScreen onStartOver={handleStartOver} />
-        )}
+      <div className="flex-1 flex items-center justify-center p-4">
+        <div
+          className={`relative z-10 mx-auto text-center w-full ${yesClicked ? 'max-w-6xl' : 'max-w-2xl'}`}
+        >
+          {!yesClicked ? (
+            <ValentineQuestion
+              noButtonPosition={noButtonPosition}
+              hideNo={hideNo}
+              onYesClick={handleYesClick}
+              onNoHover={handleNoHover}
+            />
+          ) : (
+            <SuccessScreen onStartOver={handleStartOver} />
+          )}
+        </div>
       </div>
+
+      <footer className="relative z-10 py-4 text-center text-slate-500 text-sm">
+        Made with ♡ by Lulli
+      </footer>
     </main>
   );
 }
