@@ -1,7 +1,6 @@
 'use client';
 
 import { AnimatedBackground } from '@/components/AnimatedBackground';
-import { BottomDecoration } from '@/components/BottomDecoration';
 import { FloatingTulips } from '@/components/FloatingTulips';
 import { SuccessScreen } from '@/components/SuccessScreen';
 import { ValentineQuestion } from '@/components/ValentineQuestion';
@@ -38,8 +37,6 @@ export default function ValentinesPage() {
           <SuccessScreen onStartOver={handleStartOver} />
         )}
       </div>
-
-      <BottomDecoration />
     </main>
   );
 }

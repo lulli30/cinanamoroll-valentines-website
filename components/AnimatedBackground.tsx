@@ -23,22 +23,6 @@ export function AnimatedBackground() {
         className="absolute top-1/3 left-1/3 w-48 h-48 bg-blue-200 rounded-full opacity-10 blur-3xl animate-pulse"
         style={{ animationDelay: '3s' }}
       />
-      {/* Sparkle effects */}
-      <div className="absolute top-20 left-1/4 text-2xl opacity-20 animate-shimmer">
-        ✨
-      </div>
-      <div
-        className="absolute top-1/3 right-1/3 text-xl opacity-15 animate-shimmer"
-        style={{ animationDelay: '1s' }}
-      >
-        ✨
-      </div>
-      <div
-        className="absolute bottom-1/3 left-1/2 text-2xl opacity-20 animate-shimmer"
-        style={{ animationDelay: '1.5s' }}
-      >
-        ✨
-      </div>
     </div>
   );
 }
